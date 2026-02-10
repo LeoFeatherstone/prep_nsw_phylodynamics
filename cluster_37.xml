@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beast version="2.7" beautitemplate='Standard' beautistatus=''
+    namespace="beast.base.inference:
+            beast.base.evolution.alignment:
+            beast.base.evolution.tree:
+            beast.base.evolution.tree.coalescent:
+            beast.base.evolution.nuc:
+            beast.base.evolution.operator:
+            beast.base.evolution.sitemodel:
+            beast.base.evolution.substitutionmodel:
+            beast.base.evolution.branchratemodel:
+            beast.base.evolution.likelihood">
+
+    <map name="Uniform">beast.base.inference.distribution.Uniform</map>
+    <map name="Exponential">beast.base.inference.distribution.Exponential</map>
+    <map name="LogNormal">beast.base.inference.distribution.LogNormalDistributionModel</map>
+    <map name="Normal">beast.base.inference.distribution.Normal</map>
+    <map name="Beta">beast.base.inference.distribution.Beta</map>
+    <map name="Gamma">beast.base.inference.distribution.Gamma</map>
+    <map name="LaplaceDistribution">beast.base.inference.distribution.LaplaceDistribution</map>
+    <map name="prior">beast.base.inference.distribution.Prior</map>
+    <map name="InverseGamma">beast.base.inference.distribution.InverseGamma</map>
+    <map name="OneOnX">beast.base.inference.distribution.OneOnX</map>
+
+
+    <alignment spec="feast.fileio.AlignmentFromFasta" id="aln"
+        fileName="sequences/Cluster_37.fasta" />
+
+    <run id="mcmc" spec="MCMC" chainLength="50000000">
+        <state id="state" storeEvery="10000">
+
+            <tree id="Tree" name="stateNode">
+                <trait id="traitSet"
+                    spec="feast.fileio.TraitSetFromTaxonSet"
+                    delimiter="_"
+                    everythingAfterLast="true"
+                    traitname="date">
+                    <taxa id="taxonSet" spec="TaxonSet" alignment="@aln" />
+                </trait>
+                <taxonset idref="taxonSet" />
+            </tree>
+
+            <parameter id="sampProp" lower="0.0" name="stateNode" upper="1.0">0 0.9</parameter>
+            <parameter id="origin" lower="0.0" name="stateNode" upper="Infinity">20</parameter>
+
+            <parameter id="kappa" lower="0.0" name="stateNode">2.0</parameter>
+            <parameter id="gammaShape" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
+            <!-- 
+      The become uninfectious rate is based on the CD4 count for each cluster.
+      -->
+            <parameter id="becomeUninfectiousRate_Cluster37" lower="0.0" value="0.37"
+                name="stateNode" />
+
+            <parameter id="Re" spec="parameter.RealParameter" dimension="2"
+                lower="0.0" name="stateNode" upper="Infinity">2.0</parameter>
+
+            <!-- cluster     min_date max_date
+                <chr>          <dbl>    <dbl>
+                1 Cluster_161  2019.38  2023.75
+                2 Cluster_168  2017.43  2023.64
+                3 Cluster_37   2011.37  2019.48 -->
+
+            <parameter id="ReChangeTimes"
+                name="stateNode"
+                spec="feast.parameter.TimeParameter"
+                time="2017-01-01 2019-06-25"
+                mostRecentSampleTime="2019-06-25"
+                timeFormat="yyyy-MM-dd" />
+
+        </state>
+
+
+        <init spec="RandomTree" estimate="false" initial="@Tree" taxa="@aln">
+            <populationModel spec="ConstantPopulation">
+                <parameter name="popSize">0.01</parameter>
+            </populationModel>
+        </init>
+
+        <distribution id="posterior" spec="CompoundDistribution">
+            <distribution id="prior" spec="CompoundDistribution">
+
+                <distribution id="treePrior"
+                    spec="bdsky.evolution.speciation.BirthDeathSkylineModel"
+                    reverseTimeArrays="true true true true true"
+                    origin="@origin"
+                    samplingProportion="@sampProp"
+                    reproductiveNumber="@Re"
+                    birthRateChangeTimes="0 2.48"
+                    becomeUninfectiousRate="@becomeUninfectiousRate_Cluster37"
+                    tree="@Tree">
+
+                    <samplingRateChangeTimes spec="feast.parameter.RealParameterFromFunction">
+                        <function spec="feast.expressions.ExpCalculator"
+                            value="{0, max(ages)+0.5/365}">
+                            <arg id="ages" spec="feast.function.TraitSetAsFunction"
+                                traitSet="@traitSet" />
+                        </function>
+                    </samplingRateChangeTimes>
+
+                </distribution>
+
+                <prior id="sampPropPrior" name="distribution">
+                    <x spec="feast.function.Slice" arg="@sampProp"
+                        index="1" count="1" />
+                    <!-- <Beta name="distr" alpha="1" beta="4" /> -->
+                     <Uniform name="distr" upper="1" lower="0" />
+                </prior>
+
+                <prior name="distribution" x="@origin">
+                    <LogNormal name="distr">
+                        <parameter estimate="false" name="M">-2</parameter>
+                        <parameter estimate="false" lower="0.0" name="S" upper="5.0">0.8</parameter>
+                    </LogNormal>
+                </prior>
+
+
+                <!-- Substitution model parameter priors -->
+                <prior id="KappaPrior" name="distribution" x="@kappa">
+                    <LogNormal name="distr">
+                        <parameter estimate="false" name="M">1.0</parameter>
+                        <parameter estimate="false" name="S">1.25</parameter>
+                    </LogNormal>
+                </prior>
+
+                <prior id="GammaShapePrior" name="distribution" x="@gammaShape">
+                    <Exponential name="distr">
+                        <parameter estimate="false" name="mean">0.5</parameter>
+                    </Exponential>
+                </prior>
+
+            </distribution>
+
+            <distribution id="likelihood" spec="CompoundDistribution">
+
+                <distribution id="treeLikelihood" spec="ThreadedTreeLikelihood" data="@aln"
+                    tree="@Tree">
+                    <siteModel id="SiteModel" spec="SiteModel" gammaCategoryCount="4"
+                        shape="@gammaShape">
+                        <parameter id="mutationRate" estimate="false" name="mutationRate">1.0</parameter>
+                        <parameter id="proportionInvariant" estimate="false" lower="0.0"
+                            name="proportionInvariant" upper="1.0">0.0</parameter>
+                        <substModel spec="HKY" kappa="@kappa">
+                            <frequencies spec="Frequencies" data="@aln" />
+                        </substModel>
+                    </siteModel>
+                    <branchRateModel id="StrictClock" spec="StrictClockModel">
+                        <parameter id="clockRate" lower="0.0" name="clock.rate" upper="Infinity"
+                            value="3e-3" />
+                    </branchRateModel>
+                </distribution>
+
+            </distribution>
+        </distribution>
+
+        <operator id="KappaScaler" spec="ScaleOperator" parameter="@kappa" scaleFactor="0.5"
+            weight="0.1" />
+
+        <operator id="BDSKY_serialtreeScaler" spec="ScaleOperator" scaleFactor="0.801" tree="@Tree"
+            weight="3.0" />
+        <operator id="BDSKY_serialtreeRootScaler" spec="ScaleOperator" rootOnly="true"
+            scaleFactor="0.728" tree="@Tree" weight="3.0" />
+        <operator id="BDSKY_serialUniformOperator" spec="Uniform" tree="@Tree" weight="30.0" />
+        <operator id="BDSKY_serialSubtreeSlide" spec="SubtreeSlide" size="0.835" tree="@Tree"
+            weight="15.0" />
+        <operator id="BDSKY_serialnarrow" spec="Exchange" tree="@Tree" weight="15.0" />
+        <operator id="BDSKY_serialwide" spec="Exchange" isNarrow="false" tree="@Tree" weight="3.0" />
+        <operator id="BDSKY_serialWilsonBalding" spec="WilsonBalding" tree="@Tree" weight="3.0" />
+
+        <operator id="samplingScaler" spec="ScaleOperator" parameter="@sampProp" scaleFactor="0.75"
+            weight="7.0" />
+
+        <operator id="origScaler" spec="ScaleOperator" parameter="@origin" scaleFactor="0.75"
+            weight="1.0" />
+
+
+        <operator id="reproductiveNumberScaler" spec="ScaleOperator" parameter="@Re" weight="10.0" />
+
+        <operator id="gammaShape_operator" spec="ScaleOperator" parameter="@gammaShape"
+            scaleFactor="0.5" weight="0.1" />
+
+        <logger id="screenlog" logEvery="100000">
+            <log idref="posterior" />
+        </logger>
+
+        <logger id="tracelog" fileName="cluster_37.log" logEvery="10000" model="@posterior"
+            sanitiseHeaders="true" sort="smart">
+            <log idref="posterior" />
+            <log idref="likelihood" />
+            <log idref="prior" />
+            <log idref="treePrior" />
+            <log idref="treeLikelihood" />
+            <log spec="TreeStatLogger" tree="@Tree" />
+            <log idref="sampProp" />
+            <log idref="Re" />
+            <log idref="origin" />
+            <log idref="kappa" />
+            <log idref="gammaShape" />
+
+        </logger>
+
+    </run>
+
+</beast>

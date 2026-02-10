@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.8:BDSKY v1.5.1" version="2.7">
+
+    <data
+id="Cluster_533"
+spec="Alignment"
+name="alignment">
+        <sequence id="seq_Seq0018_Cluster-533_2021.59" spec="Sequence" taxon="Seq0018_Cluster-533_2021.59" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAACGACCCRTAGTCAYAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGGCAATATGATCAGGTWCATATAGAAATTTGTGGAAWRAAGGCTATAGG--------TACAGTGTTAGTA-GGMCCTACACCTGTCAACATAATTGGRCGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACARTGGCCATTGTCAGAAG-AAAARATAAAAGCATTAACAGAAATTTGTAAAGAAATGGAASAGGAAGGGAAAATCTCAAAAATTGGGCCTGAGAACCCDTACAATACTCCAGTATTTGCYATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGAGAACTYAATAAAAGAACTCAGGAYTTTTGGGAAGTTCAATTAGGAATACCGCATCCAGCAGGTTTGAAAAAGAAAAA-ATCAGTAACAGTACTGGATGTGGGAGATGCATAYTTTTCAGTACCYCTAGATGAAARCTTTAGAAARTATACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTGCCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGYAGTATGACAAAAATCTTAGATCCCTTTAGRATAAAAAATCCAGACTTAGTCATATATCAATACATGGATGACTTGTATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTRAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCTCCATTCCTTTGGATGGGRTATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGATAGCTGGACTGTCAATGATATACAGAAATTAGT-"/>
+        <sequence id="seq_Seq0019_Cluster-533_2018.39" spec="Sequence" taxon="Seq0019_Cluster-533_2018.39" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAACGACCCCTAGTCACAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGGCAATATGATCAGGTACATATAGAAATTTGTGGAAAGAAGGCTATAGG--------TACAGTGTTAGTA-GGACCTACACCTGTCAACATAATTGGACGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACAGTGGCCATTGTCAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAAGGAAATGGAAGAGGAAGGGAAAATCTCAAAAATTGGGCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGAGAACTCAATAAAAGAACTCAGGACTTTTGGGAAGTTCAATTAGGAATACCGCATCCAGCAGGTTTGAAAAAGAAAAA-ATCAGTAACAGTACTGGATGTGGGAGATGCATATTTTTCAGTACCTCTAGATGAAAGCTTTAGAAAATATACTGCATTCACTATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTGCCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGACAAAAATCTTAGATCCCTTTAGAATAAAAAATCCAGACTTAGTCATATATCAGTACATGGATGACTTATATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTAAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCCCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGACAGC------------------------------"/>
+        <sequence id="seq_Seq0020_Cluster-533_2018.88" spec="Sequence" taxon="Seq0020_Cluster-533_2018.88" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAACGACCCCTAGTCACAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGGCAATATGATCAGGTACATATWGAAATTTGTGGAAAGAARGCTATAGG--------TACAGTRTTAGTA-GGACCTACACCTGTCAACATAATTGGRCGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACAGTGGCCATTGTCAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAARGAAATGGAASAGGAAGGGAAAATCTCAAAAATTGGGCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGRGAACTCAATAAAAGAACTCAGGACTTTTGGGAAGTTCAATTAGGAATACCGCATCCAGCAGGTTTGAAAAAGAAAAA-ATCAGTAACAGTACTGGATGTGGGAGATGCATATTTTTCAGTACCYCTAGATGAAAGCTTTAGAAAATATACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTGCCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGACAAAAATCTTAGATCCCTTTAGAATAAAAAATCCAGACTTAGTCATATATCAGTACATGGATGACTTRTATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTAAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCTCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGATAGC------------------------------"/>
+        <sequence id="seq_Seq0021_Cluster-533_2018.31" spec="Sequence" taxon="Seq0021_Cluster-533_2018.31" totalcount="4" value="----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------AACATAATTGGACGAATTCTGTTG-A-CTCAGATTGGTTGCACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACAATGGCCATTGTCAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAAGGAAATGGAASAGGAAGGGAAAATYTCAAAAATTGGGCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGGGAACTCAATAAAAGAACTCAGGACTTTTGGGAAGTTCAATTAGGAATACCGCATCCAGCAGGTTTGAAAAAGAAAAA-ATCGGTAACAGTACTGGATGTGGGAGATGCATATTTTTCAGTACCYCTAGATGAAAGCTTTAGAAAATATACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTGCCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGACAAAAATCTTAGATCCCTTTAGAATAAAAAATCCAGACTTAGTCATATATCAGTACATGGATGACTTRTATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTGAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGRAACCTCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGAT---------------------------------"/>
+        <sequence id="seq_Seq0022_Cluster-533_2018.16" spec="Sequence" taxon="Seq0022_Cluster-533_2018.16" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAACGACCCCTAGTCACAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGGCAATATGATCAGGTRCATATAGAAATTTGTGGAAARAAGGCTATAGG--------TACAGTGTTAGTA-GGACCTACACCTGTCAACATAATTGGRCGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACARTGGCCATTGTCAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAAGGAAATGGAAGAGGAAGGGAAAATCTCAAAAATTGGRCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGAGAACTCAATAAAAGAACTCAGGACTTTTGGGAAGTTCAATTAGGAATACCRCATCCAGCAGGTTTGAAAAAGAAAAA-ATCAGTAACAGTACTGGATGTGGGAGATGCATATTTTTCAGTACCTCTAGATGAAAGCTTTAGAAAATATACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTGCCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGACAAAAATCTTAGATCCCTTTAGAATRAAAAATCCAGACTTAGTCATATATCARTACATGGATGACTTRTATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTAAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCTCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGATAGC------------------------------"/>
+        <sequence id="seq_Seq0023_Cluster-533_2018.36" spec="Sequence" taxon="Seq0023_Cluster-533_2018.36" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAACGACCCCTAGTCACAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGGCAATATGATCAGGTACATATAGAAATYTGTGGAAAGAARGCTATAGG--------TACAGTRTTAGTA-GGACCTACACCTGTCAACATAATTGGACGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACAGTGGCCATTGTCAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAAGGAAATGGAASAGGAAGGGAAAATCTCAAAAATTGGGCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGRGAACTCAATAAAAGAACTCAGGACTTTTGGGAAGTTCAATTAGGAATACCGCATCCAGCAGGTTTGAAAAAGAAAAA-ATCAGTAACAGTACTGGATGTGGGAGATGCATATTTTTCAGTACCSCTAGATGAAAGCTTTAGAAAATAYACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTAYAATGTGTTGCCACARGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGACAAAAATCTTAGATCCCTTTAGAATAAAAAATCCAGACTTAGTCATATATCAATACATGGATGACTTATATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTAAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCTCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGATAGC------------------------------"/>
+        <sequence id="seq_Seq0024_Cluster-533_2016.27" spec="Sequence" taxon="Seq0024_Cluster-533_2016.27" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAACGACCCCTAGTCACAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGGTTTATCAAAGTAAGGCAATATGATCAGGTACATATAGAAATTTGTGGAAAGAAGGCTATAGG--------TACAGTGTTAGTA-GGCCCTACACCTGTCAACATAATTGGGCGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACAGTGGCCATTGACAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAAAGAAATGGAAGAGGAAGGGAAAATCTCAAAAATTGGGCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGAGAACTCAATAAAAGAACTCAGGACTTTTGGGAAGTTCAATTAGGAATACCGCATCCAGCAGGTTTGAAAAAGAAAAA-ATCAGTAACAGTACTGGATGTGGGAGATGCATATTTTTCAGTACCTCTAGATGAAAGCTTTAGAAAATATACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTGCCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGACAAAAATCTTAGATCCCTTTAGAATAAAAAATCCAGACTTAGTCATATATCAATACATGGATGACTTGTATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTAAGAGCTCACCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCTCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGATAGCTGGACTGTCAATGATATACAGAAATTAGT-"/>
+        <sequence id="seq_Seq0025_Cluster-533_2016.43" spec="Sequence" taxon="Seq0025_Cluster-533_2016.43" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAACGACCCCTAGTCACAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGGCAATATGATCAGGTACATATAGAAATTTGTGGAAAGAAAGCTATAGG--------TACAGTGTTAGTA-GGACCTACACCTGTCAACATAATTGGACGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGAYACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACARTGGCCATTGWCAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAAAGAAATGGARGAGGAAGGGAAAATCTCAAAAATTGGGCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGAGAACTCAATAAAAGAACTCAGGACTTTTGGGAAGTTCAATTAGGAATACCRCATCCAGCAGGTTTGAAAAAGAAAAA-ATCARTAACAGTACTGGATGTGGGAGATGCATATTTTTCAGTACCTCTAGATGAAAGCTTTAGAAAATATACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTGCCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGACAAAAATCTTAGATCCYTTTAGAATRAAAAATCCAGACTTAGTCATATATCAATACATGGATGACTTRTATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTAAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCTCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGATAGCTGGACTGTCAATGATATACAGAAAYTAGT-"/>
+        <sequence id="seq_Seq0026_Cluster-533_2019.07" spec="Sequence" taxon="Seq0026_Cluster-533_2019.07" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAGCGACCCCTAGTCACAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGGCAATATGATCAGGTACATATGGAAATTTGTGGAAAGAAAGCTATAGG--------TACAGTGTTAGTA-GGACCTACACCTGTCAACATAATTGGGCGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACAGTGGCCATTGACAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAAAGAAATGGAACAGGAAGGGAAAATCTCAAAAATTGGGCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGAGAACTCAATAAAAGAACTCAAGACTTTTGGGAAGTTCAATTAGGAATACCGCATCCAGCAGGTTTGAAAAAGAAAAA-ATCAATAACAGTACTGGATGTGGGAGATGCATATTTTTCAGTACCCCTAGATGAAAGCTTTAGAAAATATACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTGCCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGACAAAAATCTTAGATCCCTTTAGAATGAAAAATCCAGACTTAATCATATATCAATACATGGATGATTTGTATGTAGGATCTGATTTAGAAATAGGGCAGCACAGAGCAAAAATAGA------AGAGCTAAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCTCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCARCCTAT-AGAACTGCCAGAAAAAGATAGC------------------------------"/>
+        <sequence id="seq_Seq0027_Cluster-533_2017.49" spec="Sequence" taxon="Seq0027_Cluster-533_2017.49" totalcount="4" value="---------------CCTCAAATCACTCTTTGGCAACGACCCCTAGTCACAGTAAAAATAGA--AGGACAACTGAAA-----GAAGCTCTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAT---ATA------AATTTGTCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGGCAATATGATCAGGTACATATAGAAATTTGTGGAAAGAAAGCTATAGG--------TACAGTGTTAGTA-GGACCTACACCTGTCAACATAATTGGACGAAATATGTTG-A-CCCAGATTGGTTGTACTTTAAA--TTTTCCAATTAGTCCTATTGACACTGTACCAGTAAAATTAAAGCCAGGAATGGATGGACCAAAAGTTAGACAGTGGCCATTGACAGAAG-AAAAGATAAAAGCATTAACAGAAATTTGTAAAGAAATGGAAGAGGAAGGGAAAATCTCAAAAATTGGGCCTGAGAACCCATACAATACTCCAGTATTTGCTATAAAGAAAAAGGATGGCACCAAATGGAGAAAGTTAGTAGATTTCAGGGAACTCAATAAAAGAACTCAGGACTTTTGGGAAGTTCAATTAGGAATACCGCATCCAGCAGGTTTGAAAAAGAAAAA-ATCAGTAACAGTRCTGGATGTGGGAGATGCATATTTTTCAGTACCTCTAGATGAAAGCTTTAGAAAATATACTGCATTCACCATACCCAGTACAAACAATGAGACACCAGGAATCAGATATCAGTACAATGTGTTACCACAGGGATGGAAAGGATCACCAGCAATATTCCAGTGTAGTATGAYAAAAATCTTAAATCCCTTTAGAATGAAAAATCCAGACTTAGTCATATATCAATACATGGATGACTTGTATGTAGGATCTGATTTAGAAATAGAGCAGCACAGAGCAAAAATAGA------AGAGCTAAGAGCTCATCTATTGAGCTGGGGATTTACTACCCCAGACAAAAAG-CATCAGAAGGAACCTCCATTCCTTTGGATGGGATATGAACTCCATCCTGACAGATGGACAGTCCAGCCTAT-AGAACTGCCAGAAAAAGATAGC------------------------------"/>
+    </data>
+
+    <map name="Uniform" >beast.base.inference.distribution.Uniform</map>
+
+    <map name="Exponential" >beast.base.inference.distribution.Exponential</map>
+
+    <map name="LogNormal" >beast.base.inference.distribution.LogNormalDistributionModel</map>
+
+    <map name="Normal" >beast.base.inference.distribution.Normal</map>
+
+    <map name="Beta" >beast.base.inference.distribution.Beta</map>
+
+    <map name="Gamma" >beast.base.inference.distribution.Gamma</map>
+
+    <map name="LaplaceDistribution" >beast.base.inference.distribution.LaplaceDistribution</map>
+
+    <map name="prior" >beast.base.inference.distribution.Prior</map>
+
+    <map name="InverseGamma" >beast.base.inference.distribution.InverseGamma</map>
+
+    <map name="OneOnX" >beast.base.inference.distribution.OneOnX</map>
+
+    <run id="mcmc" spec="MCMC" chainLength="50000000">
+        <state id="state" spec="State" storeEvery="5000">
+            <tree id="Tree.t:Cluster_533" spec="beast.base.evolution.tree.Tree" name="stateNode">
+                <trait id="dateTrait.t:Cluster_533" spec="beast.base.evolution.tree.TraitSet" traitname="date" value="Seq0018_Cluster-533_2021.59=2021.59,Seq0024_Cluster-533_2016.27=2016.27,Seq0025_Cluster-533_2016.43=2016.43,Seq0026_Cluster-533_2019.07=2019.07,Seq0027_Cluster-533_2017.49=2017.49,Seq0019_Cluster-533_2018.39=2018.39,Seq0020_Cluster-533_2018.88=2018.88,Seq0023_Cluster-533_2018.36=2018.36,Seq0022_Cluster-533_2018.16=2018.16,Seq0021_Cluster-533_2018.31=2018.31">
+                    <taxa id="TaxonSet.Cluster_533" spec="TaxonSet">
+                        <alignment idref="Cluster_533"/>
+                    </taxa>
+                </trait>
+                <taxonset idref="TaxonSet.Cluster_533"/>
+            </tree>
+            <parameter id="clockRate.c:Cluster_533" spec="parameter.RealParameter" lower="0.0" name="stateNode">0.003</parameter>
+            <parameter id="kappa.s:Cluster_533" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
+            <parameter id="gammaShape.s:Cluster_533" spec="parameter.RealParameter" lower="0.1" name="stateNode">1.0</parameter>
+            <parameter id="origin_BDSKY_Serial.t:Cluster_533" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="Infinity">1000.0</parameter>
+            <parameter id="reproductiveNumber_BDSKY_Serial.t:Cluster_533" spec="parameter.RealParameter" dimension="10" lower="0.0" name="stateNode" upper="Infinity">2.0</parameter>
+            <parameter id="samplingProportion_BDSKY_Serial.t:Cluster_533" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="1.0">0.01</parameter>
+        </state>
+        <init id="RandomTree.t:Cluster_533" spec="RandomTree" estimate="false" initial="@Tree.t:Cluster_533" taxa="@Cluster_533">
+            <populationModel id="ConstantPopulation0.t:Cluster_533" spec="ConstantPopulation">
+                <parameter id="randomPopSize.t:Cluster_533" spec="parameter.RealParameter" name="popSize">1.0</parameter>
+            </populationModel>
+        </init>
+        <distribution id="posterior" spec="CompoundDistribution">
+            <distribution id="prior" spec="CompoundDistribution">
+                <distribution id="BDSKY_Serial.t:Cluster_533" spec="bdsky.evolution.speciation.BirthDeathSkylineModel" origin="@origin_BDSKY_Serial.t:Cluster_533" reproductiveNumber="@reproductiveNumber_BDSKY_Serial.t:Cluster_533" samplingProportion="@samplingProportion_BDSKY_Serial.t:Cluster_533" tree="@Tree.t:Cluster_533">
+                    <parameter id="becomeUninfectiousRate_BDSKY_Serial.t:Cluster_533" spec="parameter.RealParameter" estimate="false" lower="0.0" name="becomeUninfectiousRate" upper="Infinity">1.0</parameter>
+                </distribution>
+                <prior id="ClockPrior.c:Cluster_533" name="distribution" x="@clockRate.c:Cluster_533">
+                    <Uniform id="Uniform.0" name="distr" upper="Infinity"/>
+                </prior>
+                <prior id="GammaShapePrior.s:Cluster_533" name="distribution" x="@gammaShape.s:Cluster_533">
+                    <Exponential id="Exponential.0" name="distr">
+                        <parameter id="RealParameter.0" spec="parameter.RealParameter" estimate="false" name="mean">1.0</parameter>
+                    </Exponential>
+                </prior>
+                <prior id="KappaPrior.s:Cluster_533" name="distribution" x="@kappa.s:Cluster_533">
+                    <LogNormal id="LogNormalDistributionModel.0" name="distr">
+                        <parameter id="RealParameter.48" spec="parameter.RealParameter" estimate="false" name="M">1.0</parameter>
+                        <parameter id="RealParameter.49" spec="parameter.RealParameter" estimate="false" name="S">1.25</parameter>
+                    </LogNormal>
+                </prior>
+                <prior id="originPrior_BDSKY_Serial.t:Cluster_533" name="distribution" x="@origin_BDSKY_Serial.t:Cluster_533">
+                    <Uniform id="Uniform.48" name="distr" upper="Infinity"/>
+                </prior>
+                <prior id="reproductiveNumberPrior_BDSKY_Serial.t:Cluster_533" name="distribution" x="@reproductiveNumber_BDSKY_Serial.t:Cluster_533">
+                    <LogNormal id="LogNormalDistributionModel.2" name="distr">
+                        <parameter id="RealParameter.55" spec="parameter.RealParameter" estimate="false" name="M">0.0</parameter>
+                        <parameter id="RealParameter.56" spec="parameter.RealParameter" estimate="false" name="S">1.0</parameter>
+                    </LogNormal>
+                </prior>
+                <prior id="samplingProportionPrior_BDSKY_Serial.t:Cluster_533" name="distribution" x="@samplingProportion_BDSKY_Serial.t:Cluster_533">
+                    <Beta id="Beta.1" name="distr">
+                        <parameter id="RealParameter.57" spec="parameter.RealParameter" estimate="false" name="alpha">1.0</parameter>
+                        <parameter id="RealParameter.58" spec="parameter.RealParameter" estimate="false" name="beta">1.0</parameter>
+                    </Beta>
+                </prior>
+            </distribution>
+            <distribution id="likelihood" spec="CompoundDistribution" useThreads="true">
+                <distribution id="treeLikelihood.Cluster_533" spec="ThreadedTreeLikelihood" data="@Cluster_533" tree="@Tree.t:Cluster_533">
+                    <siteModel id="SiteModel.s:Cluster_533" spec="SiteModel" gammaCategoryCount="4" shape="@gammaShape.s:Cluster_533">
+                        <parameter id="mutationRate.s:Cluster_533" spec="parameter.RealParameter" estimate="false" lower="0.0" name="mutationRate">1.0</parameter>
+                        <parameter id="proportionInvariant.s:Cluster_533" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                        <substModel id="hky.s:Cluster_533" spec="HKY" kappa="@kappa.s:Cluster_533">
+                            <frequencies id="empiricalFreqs.s:Cluster_533" spec="Frequencies" data="@Cluster_533"/>
+                        </substModel>
+                    </siteModel>
+                    <branchRateModel id="StrictClock.c:Cluster_533" spec="beast.base.evolution.branchratemodel.StrictClockModel" clock.rate="@clockRate.c:Cluster_533"/>
+                </distribution>
+            </distribution>
+        </distribution>
+        <operator id="StrictClockRateScaler.c:Cluster_533" spec="AdaptableOperatorSampler" weight="1.5">
+            <parameter idref="clockRate.c:Cluster_533"/>
+            <operator id="AVMNOperator.Cluster_533" spec="kernel.AdaptableVarianceMultivariateNormalOperator" allowNonsense="true" beta="0.05" burnin="400" initial="800" weight="0.1">
+                <transformations id="AVMNSumTransform.Cluster_533" spec="operator.kernel.Transform$LogConstrainedSumTransform"/>
+                <transformations id="AVMNLogTransform.Cluster_533" spec="operator.kernel.Transform$LogTransform">
+                    <f idref="clockRate.c:Cluster_533"/>
+                    <f idref="kappa.s:Cluster_533"/>
+                    <f idref="gammaShape.s:Cluster_533"/>
+                </transformations>
+                <transformations id="AVMNNoTransform.Cluster_533" spec="operator.kernel.Transform$NoTransform">
+                    <f idref="Tree.t:Cluster_533"/>
+                </transformations>
+            </operator>
+            <operator id="StrictClockRateScalerX.c:Cluster_533" spec="kernel.BactrianScaleOperator" parameter="@clockRate.c:Cluster_533" upper="10.0" weight="3.0"/>
+        </operator>
+        <operator id="strictClockUpDownOperator.c:Cluster_533" spec="AdaptableOperatorSampler" weight="1.5">
+            <parameter idref="clockRate.c:Cluster_533"/>
+            <tree idref="Tree.t:Cluster_533"/>
+            <operator idref="AVMNOperator.Cluster_533"/>
+            <operator id="strictClockUpDownOperatorX.c:Cluster_533" spec="operator.kernel.BactrianUpDownOperator" scaleFactor="0.75" weight="3.0">
+                <up idref="clockRate.c:Cluster_533"/>
+                <down idref="Tree.t:Cluster_533"/>
+            </operator>
+        </operator>
+        <operator id="KappaScaler.s:Cluster_533" spec="AdaptableOperatorSampler" weight="0.05">
+            <parameter idref="kappa.s:Cluster_533"/>
+            <operator idref="AVMNOperator.Cluster_533"/>
+            <operator id="KappaScalerX.s:Cluster_533" spec="kernel.BactrianScaleOperator" parameter="@kappa.s:Cluster_533" scaleFactor="0.1" upper="10.0" weight="0.1"/>
+        </operator>
+        <operator id="gammaShapeScaler.s:Cluster_533" spec="AdaptableOperatorSampler" weight="0.05">
+            <parameter idref="gammaShape.s:Cluster_533"/>
+            <operator idref="AVMNOperator.Cluster_533"/>
+            <operator id="gammaShapeScalerX.s:Cluster_533" spec="kernel.BactrianScaleOperator" parameter="@gammaShape.s:Cluster_533" scaleFactor="0.5" upper="10.0" weight="0.1"/>
+        </operator>
+        <operator id="BDSKY_SerialBICEPSEpochTop.t:Cluster_533" spec="EpochFlexOperator" scaleFactor="0.1" tree="@Tree.t:Cluster_533" weight="2.0"/>
+        <operator id="BDSKY_SerialBICEPSEpochAll.t:Cluster_533" spec="EpochFlexOperator" fromOldestTipOnly="false" scaleFactor="0.1" tree="@Tree.t:Cluster_533" weight="2.0"/>
+        <operator id="BDSKY_SerialBICEPSTreeFlex.t:Cluster_533" spec="TreeStretchOperator" scaleFactor="0.01" tree="@Tree.t:Cluster_533" weight="2.0"/>
+        <operator id="BDSKY_SerialTreeRootScaler.t:Cluster_533" spec="kernel.BactrianScaleOperator" rootOnly="true" scaleFactor="0.1" tree="@Tree.t:Cluster_533" upper="10.0" weight="3.0"/>
+        <operator id="BDSKY_SerialUniformOperator.t:Cluster_533" spec="kernel.BactrianNodeOperator" tree="@Tree.t:Cluster_533" weight="30.0"/>
+        <operator id="BDSKY_SerialSubtreeSlide.t:Cluster_533" spec="kernel.BactrianSubtreeSlide" tree="@Tree.t:Cluster_533" weight="15.0"/>
+        <operator id="BDSKY_SerialNarrow.t:Cluster_533" spec="Exchange" tree="@Tree.t:Cluster_533" weight="15.0"/>
+        <operator id="BDSKY_SerialWide.t:Cluster_533" spec="Exchange" isNarrow="false" tree="@Tree.t:Cluster_533" weight="3.0"/>
+        <operator id="BDSKY_SerialWilsonBalding.t:Cluster_533" spec="WilsonBalding" tree="@Tree.t:Cluster_533" weight="3.0"/>
+        <operator id="reproductiveNumberScaler_BDSKY_Serial.t:Cluster_533" spec="ScaleOperator" parameter="@reproductiveNumber_BDSKY_Serial.t:Cluster_533" weight="10.0"/>
+        <operator id="samplingProportionScaler_BDSKY_Serial.t:Cluster_533" spec="ScaleOperator" parameter="@samplingProportion_BDSKY_Serial.t:Cluster_533" weight="10.0"/>
+        <operator id="origScaler_BDSKY_Serial.t:Cluster_533" spec="ScaleOperator" parameter="@origin_BDSKY_Serial.t:Cluster_533" weight="1.0"/>
+        <logger id="tracelog" spec="Logger" fileName="$(filebase).log" logEvery="10000" model="@posterior" sanitiseHeaders="true" sort="smart">
+            <log idref="posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+            <log idref="treeLikelihood.Cluster_533"/>
+            <log id="TreeHeight.t:Cluster_533" spec="beast.base.evolution.tree.TreeStatLogger" tree="@Tree.t:Cluster_533"/>
+            <log idref="clockRate.c:Cluster_533"/>
+            <log idref="kappa.s:Cluster_533"/>
+            <log idref="gammaShape.s:Cluster_533"/>
+            <log idref="BDSKY_Serial.t:Cluster_533"/>
+            <log idref="origin_BDSKY_Serial.t:Cluster_533"/>
+            <log idref="reproductiveNumber_BDSKY_Serial.t:Cluster_533"/>
+            <log idref="samplingProportion_BDSKY_Serial.t:Cluster_533"/>
+        </logger>
+        <logger id="screenlog" spec="Logger" logEvery="1000">
+            <log idref="posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+        </logger>
+        <logger id="treelog.t:Cluster_533" spec="Logger" fileName="$(filebase)-$(tree).trees" logEvery="10000" mode="tree">
+            <log id="TreeWithMetaDataLogger.t:Cluster_533" spec="beast.base.evolution.TreeWithMetaDataLogger" tree="@Tree.t:Cluster_533"/>
+        </logger>
+        <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+    </run>
+
+</beast>

@@ -1,0 +1,11 @@
+# Sensitive data in sequences file
+*.fasta
+*.xlsx
+
+# Beast output
+*.log
+*.state
+*.trees
+
+# MacOS system files
+.DS_store
