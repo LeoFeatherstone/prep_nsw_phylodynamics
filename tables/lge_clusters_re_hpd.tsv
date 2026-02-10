@@ -1,0 +1,9 @@
+cluster	interval	mean	lower	upper
+Cluster 161	COVID-19 lockdown	0.966	0.043	2.953
+Cluster 168	COVID-19 lockdown	1.593	0.658	2.835
+Cluster 168	PrEP rollout	2.975	1.670	4.661
+Cluster 168	NA	Inf	Inf	Inf
+Cluster 37	COVID-19 lockdown	NaN	NA	NA
+Cluster 37	Post-lockdown	NaN	NA	NA
+Cluster 37	PrEP rollout	1.837	0.310	4.136
+Cluster 37	NA	2.429	1.387	3.841

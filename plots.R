@@ -506,5 +506,71 @@ ggsave(
   width = 8, height = 5, dpi = 600
 )
 
-## TODO: Year of arrival for top3 clusters
-## TODO: Mark top 3 clusters on timeline plot
+### Get HPDs for Re ###
+re_table <- avg %>%
+  select(starts_with("ReEpi")) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "interval",
+    values_to = "Re"
+  ) %>%
+  mutate(interval = case_when(
+    interval == "ReEpi.1" ~ "Post-lockdown",
+    interval == "ReEpi.2" ~ "COVID-19 lockdown",
+    interval == "ReEpi.3" ~ "PrEP rollout",
+    interval == "ReEpi.4" ~ "Before PrEP"
+  )) %>%
+  mutate(interval = paste0("Re ", interval)) %>%
+  group_by(interval) %>%
+  summarize(
+    mean = mean(Re),
+    lower = quantile(Re, 0.025),
+    upper = quantile(Re, 0.975),
+    .groups = "drop"
+  ) %>%
+  mutate(across(where(is.numeric), ~ sprintf("%.3f", .)))
+
+knitr::kable(
+  re_table,
+  format = "simple",
+  col.names = c("Interval", "Mean", "Lower", "Upper")
+)
+write_tsv(re_table, "tables/re_hpd.csv")
+
+### HPS for Re intervals for each large cluster ###
+lge_re_table <- lge %>%
+  pivot_longer(
+    cols = starts_with("Re"),
+    names_to = "interval",
+    values_to = "Re"
+  ) %>%
+  filter(!(
+    (interval == "Re.1" & cluster %in% c("Cluster 161", "Cluster 168")) |
+    (interval %in% c("Re.4", "Re.3") & cluster == "Cluster 37")
+  )) %>%
+  # Note that interval ordering is reverse compared to in avg_re
+  mutate(interval = case_when(
+    interval == "Re.4" ~ "Post-lockdown",
+    interval == "Re.3" ~ "COVID-19 lockdown",
+    interval == "Re.2" ~ "PrEP rollout",
+    interval == "Re.1" ~ "Before PrEP"
+  )) %>%
+  group_by(cluster, interval) %>%
+  summarize(
+    mean = mean(Re, na.rm = TRUE),
+    lower = quantile(Re, 0.025, na.rm = TRUE),
+    upper = quantile(Re, 0.975, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(across(where(is.numeric), ~ sprintf("%.3f", .)))
+write_tsv(lge_re_table, "tables/lge_clusters_re_hpd.tsv")
+
+### Get HPDs for DPP number of Re values
+dpp_table <- dpp %>%
+  summarize(
+    mean = mean(uniqueReCount),
+    lower = quantile(uniqueReCount, 0.025),
+    upper = quantile(uniqueReCount, 0.975)
+  ) %>%
+  mutate(across(where(is.numeric), ~ sprintf("%.2f", .)))
+write_tsv(dpp_table, "tables/dpp_n_re_hpd.tsv")
