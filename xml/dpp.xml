@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beast version="2.7" beautitemplate='Standard' beautistatus='' 
+  namespace="beast.base.inference:
+            beast.base.evolution.alignment:
+            beast.base.evolution.tree:
+            beast.base.evolution.tree.coalescent:
+            beast.base.evolution.nuc:
+            beast.base.evolution.operator:
+            beast.base.evolution.sitemodel:
+            beast.base.evolution.substitutionmodel:
+            beast.base.evolution.branchratemodel:
+            beast.base.evolution.likelihood">
+
+<map name="Uniform" >beast.base.inference.distribution.Uniform</map>
+<map name="Exponential" >beast.base.inference.distribution.Exponential</map>
+<map name="LogNormal" >beast.base.inference.distribution.LogNormalDistributionModel</map>
+<map name="Normal" >beast.base.inference.distribution.Normal</map>
+<map name="Beta" >beast.base.inference.distribution.Beta</map>
+<map name="Gamma" >beast.base.inference.distribution.Gamma</map>
+<map name="LaplaceDistribution" >beast.base.inference.distribution.LaplaceDistribution</map>
+<map name="prior" >beast.base.inference.distribution.Prior</map>
+<map name="InverseGamma" >beast.base.inference.distribution.InverseGamma</map>
+<map name="OneOnX" >beast.base.inference.distribution.OneOnX</map>
+
+
+<plate var="outbreak" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+<alignment spec="feast.fileio.AlignmentFromFasta" id="$(outbreak)"
+           fileName="sequences/$(outbreak).fasta"/>
+</plate>
+
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_122"
+                    index="0" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_161"
+                    index="1" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_168"
+                    index="2" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_246"
+                    index="3" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_259"
+                    index="4" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_266"
+                    index="5" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_28"
+                    index="6" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_323"
+                    index="7" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_361"
+                    index="8" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_375"
+                    index="9" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_37"
+                    index="10" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_413"
+                    index="11" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_4"
+                    index="12" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_533"
+                    index="13" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_76"
+                    index="14" count="1" arg="@ReValues"/>
+<reproductiveNumber spec="feast.function.Slice" id="Re_Cluster_81"
+                    index="15" count="1" arg="@ReValues"/>
+
+<run id="mcmc" spec="MCMC" chainLength="75000000">
+    <state id="state" storeEvery="10000">
+
+      <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+        <tree id="Tree.t:$(m)" name="stateNode">
+          <trait id="traitSet_$(m)"
+                 spec="feast.fileio.TraitSetFromTaxonSet"
+                 delimiter="_"
+                 everythingAfterLast="true"
+                 traitname="date">
+            <taxa id="taxonSet_$(m)" spec="TaxonSet" alignment="@$(m)"/>
+          </trait>
+          <taxonset idref="taxonSet_$(m)"/>
+        </tree>
+      </plate>
+
+      <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+        <parameter id="sampProp_$(m)" lower="0.0" name="stateNode" upper="1.0">0 0.9</parameter>
+        <parameter id="origin_$(m)" lower="0.0" name="stateNode" upper="Infinity">20</parameter>
+      </plate>
+
+      <parameter id="ReValues" lower="0.0" name="stateNode" dimension="16">2.0</parameter>
+
+      <stateNode id="dirichletScale" spec="parameter.RealParameter" lower="0" value="1.0"/>
+
+      <parameter id="kappa" lower="0.0" name="stateNode">2.0</parameter>
+      <parameter id="gammaShape" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
+      <!-- 
+      The become uninfectious rate is based on the CD4 count for each Cluster_.
+      -->
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_122" value="0.29"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_161" value="0.44"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_168" value="0.47"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_246" value="0.47"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_259" value="0.40"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_266" value="0.39"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_28" value="0.46"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_323" value="0.69"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_361" value="0.57"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_375" value="0.48"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_37" value="0.37"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_413" value="0.68"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_4" value="0.41"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_533" value="0.36"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_76" value="0.43"/>
+      <parameter name="stateNode" id="becomeUninfectiousRate_Cluster_81" value="0.45"/>
+
+    </state>
+
+    <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+    <init spec="RandomTree" estimate="false"
+          initial="@Tree.t:$(m)" taxa="@$(m)">
+        <populationModel spec="ConstantPopulation">
+            <parameter name="popSize">0.01</parameter>
+        </populationModel>
+    </init>
+    </plate>
+
+    <distribution id="posterior" spec="CompoundDistribution">
+        <distribution id="prior" spec="CompoundDistribution">
+
+          <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+            <distribution id="treePrior_$(m)"
+                          spec="bdsky.evolution.speciation.BirthDeathSkylineModel"
+                          reverseTimeArrays="true true true true true"
+                          origin="@origin_$(m)"
+                          samplingProportion="@sampProp_$(m)"
+                          reproductiveNumber="@Re_$(m)"
+                          becomeUninfectiousRate="@becomeUninfectiousRate_$(m)"
+                          tree="@Tree.t:$(m)">
+              <!-- Experimenting with change times birth rate. Remove later -->
+              <samplingRateChangeTimes spec="feast.parameter.RealParameterFromFunction">
+                <function spec="feast.expressions.ExpCalculator" value="{0, max(ages_$(m))+0.5/365}">
+                  <arg id="ages_$(m)" spec="feast.function.TraitSetAsFunction" traitSet="@traitSet_$(m)"/>
+                </function>
+              </samplingRateChangeTimes>
+            </distribution>
+
+            <prior id="sampPropPrior_$(m)" name="distribution">
+              <x spec="feast.function.Slice" arg="@sampProp_$(m)"
+                 index="1" count="1"/>
+              <!-- <Beta name="distr" alpha="1" beta="4"/> -->
+               <Uniform name="distr" upper="1" lower="0" />
+            </prior>
+
+            <prior name="distribution" x="@origin_$(m)">
+              <LogNormal name="distr">
+                <parameter estimate="false" name="M">-2</parameter>
+                <parameter estimate="false" lower="0.0" name="S" upper="5.0">0.8</parameter>
+              </LogNormal>
+            </prior>
+
+          </plate>
+
+            <!-- Model selection priors -->
+
+            <distribution spec="feast.modelselect.DirichletProcessPrior"
+                          parameter="@ReValues" scaleParameter="@dirichletScale">
+              <LogNormal id="baseReDistr" name="baseDistr"  M="0" S="1.0"/>
+            </distribution>
+
+            <!-- Hyperprior on scale parameter with shape and inverse scale parameters
+                 0.512 and 0.029 to induce a roughly uniform prior on the number of
+                 unique Re values, following Dorazio 2009.
+            NB, 1 / 34.48275862068965 = 0.029 -->
+            <prior id="dirichletScalePrior" name="distribution" x="@dirichletScale">
+              <Gamma name="distr" alpha="0.512" beta="34.48275862068965"/>
+            </prior>
+
+          <!-- Substitution model parameter priors -->
+
+          <prior id="KappaPrior" name="distribution" x="@kappa">
+            <LogNormal name="distr">
+              <parameter estimate="false" name="M">1.0</parameter>
+              <parameter estimate="false" name="S">1.25</parameter>
+            </LogNormal>
+          </prior>
+
+          <prior id="GammaShapePrior" name="distribution" x="@gammaShape">
+            <Exponential name="distr">
+              <parameter estimate="false" name="mean">0.5</parameter>
+            </Exponential>
+          </prior>
+
+        </distribution>
+
+        <distribution id="likelihood" spec="CompoundDistribution">
+
+          <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+
+          <distribution id="treeLikelihood.$(m)" spec="ThreadedTreeLikelihood" data="@$(m)" tree="@Tree.t:$(m)">
+              <siteModel id="SiteModel.s:$(m)" spec="SiteModel" gammaCategoryCount="4" shape="@gammaShape">
+                  <parameter id="mutationRate.s:$(m)" estimate="false" name="mutationRate">1.0</parameter>
+                  <parameter id="proportionInvariant.s:$(m)" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                  <substModel spec="HKY" kappa="@kappa">
+                      <frequencies spec="Frequencies" data="@$(m)"/>
+                  </substModel>
+              </siteModel>
+              <branchRateModel id="StrictClock.c:$(m)" spec="StrictClockModel">
+                <parameter id="clockRate.c:$(m)" lower="0.0" name="clock.rate" upper="Infinity" value="3e-3"/>
+              </branchRateModel>
+          </distribution>
+
+          </plate>
+
+        </distribution>
+    </distribution>
+
+    <operator id="KappaScaler" spec="ScaleOperator" parameter="@kappa" scaleFactor="0.5" weight="0.1"/>
+
+    <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+      <operator id="BDSKY_serialtreeScaler.t:$(m)" spec="ScaleOperator" scaleFactor="0.801" tree="@Tree.t:$(m)" weight="3.0"/>
+      <operator id="BDSKY_serialtreeRootScaler.t:$(m)" spec="ScaleOperator" rootOnly="true" scaleFactor="0.728" tree="@Tree.t:$(m)" weight="3.0"/>
+      <operator id="BDSKY_serialUniformOperator.t:$(m)" spec="Uniform" tree="@Tree.t:$(m)" weight="30.0"/>
+      <operator id="BDSKY_serialSubtreeSlide.t:$(m)" spec="SubtreeSlide" size="0.835" tree="@Tree.t:$(m)" weight="15.0"/>
+      <operator id="BDSKY_serialnarrow.t:$(m)" spec="Exchange" tree="@Tree.t:$(m)" weight="15.0"/>
+      <operator id="BDSKY_serialwide.t:$(m)" spec="Exchange" isNarrow="false" tree="@Tree.t:$(m)" weight="3.0"/>
+      <operator id="BDSKY_serialWilsonBalding.t:$(m)" spec="WilsonBalding" tree="@Tree.t:$(m)" weight="3.0"/>
+
+      <operator id="samplingScaler_$(m)" spec="ScaleOperator" parameter="@sampProp_$(m)" scaleFactor="0.75" weight="7.0"/>
+    </plate>
+
+    <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+      <operator id="origScaler_$(m)" spec="ScaleOperator" parameter="@origin_$(m)" scaleFactor="0.75" weight="1.0"/>
+    </plate>
+
+    <operator id="dirichletOperator" spec="feast.modelselect.DirichletProcessOperator"
+              parameter="@ReValues" scaleParameter="@dirichletScale" baseDistr="@baseReDistr"
+              weight="10">
+    </operator>
+
+    <operator id="smartReOperator" spec="feast.operators.SmartScaleOperator" parameter="@ReValues"
+              scaleFactor="0.75" weight="10"/>
+
+    <operator id="dirichletScale_operator" spec="ScaleOperator" parameter="@dirichletScale" scaleFactor="0.8" weight="1.0"/>
+
+    <operator id="gammaShape_operator" spec="ScaleOperator" parameter="@gammaShape" scaleFactor="0.5" weight="0.1"/>
+
+    <logger id="screenlog" logEvery="1000000">
+      <log idref="posterior"/>
+    </logger>
+
+    <logger id="tracelog" fileName="dpp.log" logEvery="10000" model="@posterior" sanitiseHeaders="true" sort="smart">
+      <log idref="posterior"/>
+      <log idref="likelihood"/>
+      <log idref="prior"/>
+
+      <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+        <log idref="treePrior_$(m)"/>
+        <log idref="treeLikelihood.$(m)"/>
+        <log spec="TreeStatLogger" tree="@Tree.t:$(m)"/>
+
+        <log idref="sampProp_$(m)"/>
+        <log idref="Re_$(m)"/>
+      </plate>
+
+      <plate var="m" range="Cluster_122,Cluster_161,Cluster_168,Cluster_246,Cluster_259,Cluster_266,Cluster_28,Cluster_323,Cluster_361,Cluster_375,Cluster_37,Cluster_413,Cluster_4,Cluster_533,Cluster_76,Cluster_81">
+        <log idref="origin_$(m)"/>
+      </plate>
+
+      <log idref="kappa"/>
+      <log idref="gammaShape"/>
+      <log idref="dirichletScale"/>
+      <log idref="dirichletScalePrior"/>
+      <log idref="ReValues"/>
+      <log id="uniqueReCount" spec="feast.function.UniqueElementCount" arg="@ReValues"/>
+    </logger>
+
+</run>
+
+</beast>
