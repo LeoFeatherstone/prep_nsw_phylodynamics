@@ -1,6 +1,6 @@
-# README
+# NSW PrEP Phylodynamics
 
-This repositroy contains files for BEAST analyses and plotting in Obeng et al. (2025).
+This repositroy contains files for BEAST analyses and plotting in Obeng et al. (2026).
 
 ## Steps
 1. Prepare sequence files using `seq.R`.
@@ -10,22 +10,18 @@ This repositroy contains files for BEAST analyses and plotting in Obeng et al. (
 
 ## Notes
 - `.xml` files for BEAST analyses.
-    + `BD_averaged.{xml,log}`: Are v2.6 versions of the averaged $R_e$ analyses. TODO: update to v2.7.7 in `re_average.xml`
+    + `re_average.xml`: Birth-death skyline analyses modelling $R_e$ over all clusters before PrEP, during the rollout, during lockdown, and post lockdown
+    + `cluster_{37,161,268}.xml`: Birth-Death skyline for top-3 largest clusters
+    + `dpp.xml`: Again pooling clusters but with Dirchlet process prior on $R_e$
 
 - `R` packages required: 
-    + `tidyverse`, `latex2exp`, `beastio`, `readxl`, `patchwork`
+    + `tidyverse`, `latex2exp`, `beastio`, `readxl`, `patchwork`, `knitr`
 
 ## About analyses
-Each analysis can be run with:
+Each analysis can be run with, or with `run_beast.sh`:
 ```bash
 arr=(re_averaged.xml cluster_161.xml cluster_168.xml cluster_37.xml dpp.xml)
 for xml in "${arr[@]}"; do
     beast2 -overwrite -seed 4321 -beagle $xml
 done
 ```
-
-- `BD_averaged.xml` / `re_average.xml`: Birth-death skyline analyses modelling $R_e$ over all clusters before PrEP, during the rollout, during lockdown, and post lockdown.
-
-- `cluster_161.xml`, `cluster_168.xml`, `cluster_37.xml`: Birth-death skyline analyses with the same intervals as abbove for the top thre largest clusters.
-
-- `dpp.xml` : Fits dirichlet process to all datasets similarly to the averaged $R_e$ analyes. TODO: fit Dirichlet process to each interval? (current barrier is .xml)
