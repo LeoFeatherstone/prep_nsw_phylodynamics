@@ -181,7 +181,7 @@
                                     spec="feast.parameter.RealParameterFromFunction">
 
                                     <function spec="feast.expressions.ExpCalculator"
-                                        value="(2023.9 - min(d_2$(c)) + (0.1/365.25)">
+                                        value="2023.9 - min(d_2$(c)) + (0.1/365.25)">
                                         <arg id="d_2$(c)" spec="feast.function.TraitSetAsFunction"
                                             traitSet="@absDateTrait$(c)" />
                                     </function>
