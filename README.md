@@ -3,7 +3,7 @@
 This repository contains files for BEAST analyses and plotting in Obeng et al. (2026).
 
 ## Directory Structure
-- `data/sequences/` - FASTA sequence files
+- `sequences/` - FASTA sequence files
 - `xml/` - BEAST XML configuration files
 - `scripts/` - R scripts for data processing and plotting
 - `results/` - Output from analyses
