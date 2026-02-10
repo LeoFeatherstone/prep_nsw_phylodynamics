@@ -108,7 +108,7 @@
                 <parameter id="samplingProportionEpi$(c)" spec="parameter.RealParameter"
                     dimension="2"
                     lower="0.0" name="stateNode" upper="1.0">0.9 0.0</parameter>
-                <parameter id="origin$(c)" spec="parameter.RealParameter" name="stateNode">100.0</parameter>
+                <parameter id="origin$(c)" spec="parameter.RealParameter" name="stateNode">20.0</parameter>
 
             </plate>
 
