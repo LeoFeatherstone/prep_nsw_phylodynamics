@@ -200,7 +200,12 @@
                     </distribution>
 
                     <prior id="origin$(c)Prior" name="distribution" x="@origin$(c)">
-                        <Uniform name="distr" upper="Infinity" />
+                        <!-- <Uniform name="distr" upper="Infinity" /> -->
+                        <!-- Roughly 50% of weight in 1.5 months, 65% before 1 year -->
+                        <LogNormal name="distr">
+                            <parameter estimate="false" name="M">-2</parameter>
+                            <parameter estimate="false" name="S">0.8</parameter>
+                        </LogNormal>
                     </prior>
 
                     <distribution id="samplingProportionEpi$(c)Prior"
@@ -215,9 +220,9 @@
                     x="@ReEpi">
                     <LogNormal id="LogNormalDistributionModel.1" name="distr">
                         <parameter id="RealParameter.9" spec="parameter.RealParameter"
-                            estimate="false" name="M">1.0</parameter>
+                            estimate="false" name="M">0.0</parameter>
                         <parameter id="RealParameter.10" spec="parameter.RealParameter"
-                            estimate="false" lower="0.0" name="S" upper="5.0">1.25</parameter>
+                            estimate="false" name="S">1.0</parameter>
                     </LogNormal>
                 </distribution>
                 <prior id="ClockPrior" name="distribution" x="@clockRate">
