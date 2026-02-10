@@ -305,11 +305,11 @@
             </operator>
         </operator> -->
 
-        <operator id="gammaShapeScaler" spec="AdaptableOperatorSampler" weight="0.05">
+        <operator id="gammaShapeScaler" spec="AdaptableOperatorSampler" weight="0.2">
             <parameter idref="gammaShape" />
             <!-- <operator idref="AVMNOperator.$(c)" /> -->
             <operator id="gammaShapeScalerX" spec="kernel.BactrianScaleOperator"
-                parameter="@gammaShape" scaleFactor="0.5" upper="10.0" weight="0.1" />
+                parameter="@gammaShape" scaleFactor="0.5" upper="10.0" weight="0.2" />
         </operator>
         <operator id="KappaScaler" spec="AdaptableOperatorSampler" weight="0.05">
             <parameter idref="kappa" />
