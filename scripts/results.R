@@ -8,6 +8,8 @@ library(beastio)
 library(readxl)
 library(patchwork)
 
+# LEO TODO: Something's up with number of Res in large clusters. Check xml.
+
 # Set theme
 my_theme <- theme_minimal() +
   theme(
@@ -117,7 +119,7 @@ p_re_avg <- ggplot(re_traj, aes(x = date, y = mean)) +
 p_re_avg
 
 ggsave(
-  plot = p_re_avg, "figures/re_avg_trajectory.jpeg",
+  plot = p_re_avg, "results/figures/re_avg_trajectory.jpeg",
   width = 6, height = 4, dpi = 600
 )
 
@@ -207,7 +209,7 @@ p_lge_re <- ggplot() +
 p_lge_re
 
 ggsave(
-  plot = p_lge_re, "figures/top3_re.jpeg",
+  plot = p_lge_re, "results/figures/top3_re.jpeg",
   width = 5, height = 5, dpi = 600
 )
 
@@ -227,7 +229,7 @@ p_lge_samp <- lge %>%
 p_lge_samp
 
 ggsave(
-  plot = p_lge_samp, "figures/top_3_p.jpeg",
+  plot = p_lge_samp, "results/figures/top_3_p.jpeg",
   width = 5, height = 5, dpi = 600
 )
 
@@ -258,7 +260,7 @@ p_lge_area <- metadata_large_clusters %>%
 p_lge_area
 
 ggsave(
-  plot = p_lge_area, "figures/top3_area_proportion.jpeg",
+  plot = p_lge_area, "results/figures/top3_area_proportion.jpeg",
   width = 5, height = 5, dpi = 600
 )
 
@@ -291,7 +293,7 @@ p_dpp_n <- dpp %>%
     size = 4
   )
 ggsave(
-  plot = p_dpp_n, "figures/dpp_unique_re.jpeg",
+  plot = p_dpp_n, "results/figures/dpp_unique_re.jpeg",
   width = 6, height = 4, dpi = 600
 )
 
@@ -301,12 +303,12 @@ p_re_avg / (p_lge_re | p_lge_area) +
   plot_layout(heights = c(3.5, 5))
 
 ggsave(
-  plot = last_plot(), "figures/panel_re.jpeg",
+  plot = last_plot(), "results/figures/panel_re.jpeg",
   width = 8, height = 8, dpi = 600
 )
 
 ggsave(
-  plot = p_lge_re, "figures/top3_re.jpeg",
+  plot = p_lge_re, "results/figures/top3_re.jpeg",
   width = 6, height = 6, dpi = 600
 )
 
@@ -315,7 +317,7 @@ ggsave(
   plot_annotation(tag_levels = "A")
 
 ggsave(
-  plot = last_plot(), "figures/top3_re_area.jpeg",
+  plot = last_plot(), "results/figures/top3_re_area.jpeg",
   width = 8, height = 5, dpi = 600
 )
 
@@ -386,7 +388,7 @@ ggplot() +
   labs(x = "Sample date", y = "Cluster")
 
 ggsave(
-  "figures/cluster_timeline_unmarked.jpeg",
+  "results/figures/cluster_timeline_unmarked.jpeg",
   width = 8, height = 5, dpi = 600
 )
 
@@ -425,7 +427,7 @@ ggplot() +
   ) # Add right margin for annotation
 
 ggsave(
-  "figures/cluster_timeline_marked.jpeg",
+  "results/figures/cluster_timeline_marked.jpeg",
   width = 9, height = 5.2, dpi = 600
 )
 
@@ -466,7 +468,7 @@ ggplot() +
   ) # Add right margin for annotation
 
 ggsave(
-  "figures/cluster_timeline_marked_coloured.jpeg",
+  "results/figures/cluster_timeline_marked_coloured.jpeg",
   width = 9, height = 5.2, dpi = 600
 )
 
@@ -502,7 +504,7 @@ p_area_flame_stacked <- ggplot() +
   theme(legend.position = "bottom")
 
 ggsave(
-  plot = p_area_flame_stacked, "figures/area_flame_stacked.jpeg",
+  plot = p_area_flame_stacked, "results/figures/area_flame_stacked.jpeg",
   width = 8, height = 5, dpi = 600
 )
 
@@ -535,7 +537,7 @@ knitr::kable(
   format = "simple",
   col.names = c("Interval", "Mean", "Lower", "Upper")
 )
-write_tsv(re_table, "tables/re_hpd.csv")
+write_tsv(re_table, "results/tables/re_hpd.csv")
 
 ### HPS for Re intervals for each large cluster ###
 lge_re_table <- lge %>%
@@ -563,7 +565,7 @@ lge_re_table <- lge %>%
     .groups = "drop"
   ) %>%
   mutate(across(where(is.numeric), ~ sprintf("%.3f", .)))
-write_tsv(lge_re_table, "tables/lge_clusters_re_hpd.tsv")
+write_tsv(lge_re_table, "results/tables/lge_clusters_re_hpd.tsv")
 
 ### Get HPDs for DPP number of Re values
 dpp_table <- dpp %>%
@@ -573,4 +575,148 @@ dpp_table <- dpp %>%
     upper = quantile(uniqueReCount, 0.975)
   ) %>%
   mutate(across(where(is.numeric), ~ sprintf("%.2f", .)))
-write_tsv(dpp_table, "tables/dpp_n_re_hpd.tsv")
+write_tsv(dpp_table, "results/tables/dpp_n_re_hpd.tsv")
+
+## DPP Heatmap ##
+dpp_long <- dpp %>%
+  select(starts_with("Re_Cluster_")) %>%
+  mutate(state = row_number()) %>%
+  pivot_longer(cols = -state, names_to = "cluster", values_to = "Re")
+
+similarity <- dpp_long %>%
+  inner_join(dpp_long, by = c("state", "Re")) %>%
+  filter(cluster.x != cluster.y) %>%
+  count(cluster.x, cluster.y, name = "matches") %>%
+  mutate(
+    cluster.x = gsub("Re_Cluster_", "", cluster.x),
+    cluster.y = gsub("Re_Cluster_", "", cluster.y),
+    prop_matches = matches / max(dpp_long$state)
+  )
+  # Calculate cluster order based on total prop_matches
+  cluster_order <- similarity %>%
+    group_by(cluster.x) %>%
+    summarize(total_matches = sum(prop_matches)) %>%
+    arrange(desc(total_matches)) %>%
+    pull(cluster.x)
+
+  # Convert to factor with sorted levels
+  similarity <- similarity %>%
+    mutate(
+      cluster.x = factor(cluster.x, levels = cluster_order),
+      cluster.y = factor(cluster.y, levels = cluster_order)
+    )
+
+  ggplot(similarity, aes(x = cluster.x, y = cluster.y, fill = prop_matches)) +
+    geom_tile() +
+    scale_fill_viridis_c(name = "Number of\nmatching states") +
+    labs(x = "Cluster", y = "Cluster") +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      panel.grid.minor = element_blank(),
+      text = element_text(size = 12)
+    ) +
+    coord_fixed()
+
+## DPP Heatmap with marginal stacked barplot ##
+# Remove state where all are equal.
+dpp_long <- dpp %>%
+  filter(uniqueReCount > 1) %>%
+  select(starts_with("Re_Cluster_")) %>%
+  mutate(state = row_number()) %>%
+  pivot_longer(cols = -state, names_to = "cluster", values_to = "Re")
+
+similarity <- dpp_long %>%
+  inner_join(dpp_long, by = c("state", "Re")) %>%
+  filter(cluster.x != cluster.y) %>%
+  count(cluster.x, cluster.y, name = "matches") %>%
+  mutate(
+    cluster.x = gsub("Re_Cluster_", "", cluster.x),
+    cluster.y = gsub("Re_Cluster_", "", cluster.y),
+    prop_matches = matches / max(dpp_long$state)
+  )
+  # Calculate cluster order based on total prop_matches
+  cluster_order <- similarity %>%
+    group_by(cluster.x) %>%
+    summarize(total_matches = sum(prop_matches)) %>%
+    arrange(desc(total_matches)) %>%
+    pull(cluster.x)
+
+  # Convert to factor with sorted levels
+  similarity <- similarity %>%
+    mutate(
+      cluster.x = factor(cluster.x, levels = cluster_order),
+      cluster.y = factor(cluster.y, levels = cluster_order)
+    )
+
+
+# Calculate area proportions per cluster
+area_prop <- metadata %>%
+  mutate(gws_areas = case_when(
+    gws_areas == "Sydney (gay postcodes)" ~ "Inner City",
+    TRUE ~ gws_areas
+  )) %>%
+  mutate(cluster_id = gsub("Cluster ", "", cluster)) %>%
+  group_by(cluster_id, gws_areas) %>%
+  summarize(n = n(), .groups = "drop") %>%
+  group_by(cluster_id) %>%
+  mutate(prop = n / sum(n)) %>%
+  ungroup() %>%
+  mutate(
+    cluster_id = factor(cluster_id, levels = cluster_order),
+    gws_areas = factor(gws_areas, levels = c("GWS", "Inner City", "Other Sydney", "Rest of NSW"))
+  )
+
+# Main heatmap
+p_heatmap <- ggplot(similarity, aes(x = cluster.x, y = cluster.y, fill = prop_matches)) +
+  geom_tile() +
+  scale_fill_viridis_c(name = TeX("Proportion matching $R_0$")) +
+  labs(x = NULL, y = "Cluster") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    text = element_text(size = 12),
+    legend.position = "right"
+  ) +
+  theme(
+    text = element_text(size = 14),
+    legend.position = "top"
+  )
+
+# Marginal stacked barplot for area proportions
+area_cols <- c(
+  "GWS" = "red",
+  "Inner City" = "dodgerblue",
+  "Other Sydney" = "#66C2A5",
+  "Rest of NSW" = "#FEE08B"
+)
+
+p_marginal <- ggplot(area_prop, aes(x = cluster_id, y = prop, fill = gws_areas)) +
+  geom_bar(stat = "identity", position = "stack") +
+  scale_fill_manual(values = area_cols, name = "Area") +
+  labs(x = "Cluster", y = "Proportion") +
+  scale_y_continuous(breaks = c(0, 0.5, 1)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    text = element_text(size = 12),
+    legend.position = "bottom"
+  ) +
+  theme(text = element_text(size = 14))
+
+# Combine with patchwork
+p_heatmap_marginal <- p_heatmap / p_marginal +
+  plot_layout(heights = c(5, 1), axes = "collect") &
+  plot_annotation(tag_levels = "A") &
+  theme(
+    plot.tag = element_text(size = 14, face = "bold")
+  )
+
+p_heatmap_marginal
+
+ggsave(
+  plot = p_heatmap_marginal,
+  "results/figures/dpp_heatmap_area.jpeg",
+  dpi = 600
+)
