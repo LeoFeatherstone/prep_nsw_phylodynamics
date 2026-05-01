@@ -537,7 +537,7 @@ knitr::kable(
   format = "simple",
   col.names = c("Interval", "Mean", "Lower", "Upper")
 )
-write_tsv(re_table, "results/tables/re_hpd.csv")
+write_tsv(re_table, "results/tables/re_hpd.tsv")
 
 ### HPS for Re intervals for each large cluster ###
 lge_re_table <- lge %>%
